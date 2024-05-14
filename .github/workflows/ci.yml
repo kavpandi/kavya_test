@@ -43,7 +43,15 @@ jobs:
     # Script to take screenshot
     - name: Run Python script to capture screenshot
       run: |
-        python capture_screenshot.py
+        python screenshot.py
+
+    # send data screenshot to slack channel
+    - name: Sending screenshot to Slack channel
+      uses: slack/send-file@v1
+      with:
+        channels: https://app.slack.com/client/T072VPU7371/C0736F0U878  # Slack channel to send the file to (set as a secret)
+        file: kavya_test/.github/workflows/performance_data.png  # Path to performance_data screenshot
+        token: ${{ secrets.SLACK_TOKEN }}  # Slack bot user token (set as a secret)
 
     # Make sure to cleanup the repo end of the session for fresh data load
     - name: Cleanup
