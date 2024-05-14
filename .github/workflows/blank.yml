@@ -27,3 +27,19 @@ jobs:
     # Parsing the json file to Google sheet    
     - name: Parse JSON data
       run: python parse_json_to_excel.py
+
+    # Upload excel file to Google sheet  
+    - name: Authenticate with Google Sheets API
+      run: |
+        # Use OAuth2 or another authentication method to authenticate with Google Sheets API
+        # Store credentials securely using GitHub Secrets
+
+    # Send Google sheet API to the Slack channel
+    - name: Update Google Sheet
+      run: |
+        # Use Google Sheets API to insert data into Google Sheet
+
+    # Make sure to cleanup the repo end of the session for fresh data load
+    - name: Cleanup
+      run: |
+        # Cleanup any temporary files or resources  
