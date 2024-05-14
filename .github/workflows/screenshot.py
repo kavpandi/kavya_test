@@ -8,6 +8,6 @@ time.sleep(5)
 screenshot = pyautogui.screenshot()
 
 # Save the screenshot
-screenshot.save('excel_screenshot.png')
+screenshot.save('performance_data.png')
 
-print("Screenshot captured and saved as 'excel_screenshot.png'")
+print("Screenshot captured and saved as 'performance_data.png'")
