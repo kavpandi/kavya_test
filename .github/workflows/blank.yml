@@ -1,0 +1,29 @@
+name: Shopify performance metrics
+on:
+  push:
+    branches: 
+      - main
+jobs:
+  data-collect:
+    runs-on: ubuntu-latest
+
+    steps:
+    # To collect data from API
+    - name: Fetch data from API
+      run:
+          API_URL="https://api.example.com/data"
+          API_RESPONSE=$(curl -s "$API_URL")
+          echo "$API_RESPONSE" > api_data.json
+    # Setup Python to parse json data
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    # Install dependencies to run Python
+    - name: Install dependencies
+      run: pip install pandas
+      
+    # Parsing the json file to Google sheet    
+    - name: Parse JSON data
+      run: python parse_json_to_excel.py
