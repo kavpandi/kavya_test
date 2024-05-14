@@ -10,7 +10,7 @@ jobs:
     steps:
     # To collect data from API
     - name: Fetch data from API
-      run:
+      run: |
           API_URL="https://api.example.com/data"
           API_RESPONSE=$(curl -s "$API_URL")
           echo "$API_RESPONSE" > api_data.json
@@ -34,10 +34,16 @@ jobs:
         # Use OAuth2 or another authentication method to authenticate with Google Sheets API
         # Store credentials securely using GitHub Secrets
 
-    # Send Google sheet API to the Slack channel
-    - name: Update Google Sheet
+    # Install scrot for taking screenshots
+    - name: Install dependencies to take screenshot
       run: |
-        # Use Google Sheets API to insert data into Google Sheet
+        pip install pyautogui
+        sudo apt-get install -y scrot
+
+    # Script to take screenshot
+    - name: Run Python script to capture screenshot
+      run: |
+        python capture_screenshot.py
 
     # Make sure to cleanup the repo end of the session for fresh data load
     - name: Cleanup
