@@ -14,7 +14,7 @@ jobs:
           API_URL="https://api.example.com/data"
           API_TOKEN="${{ secrets.API_TOKEN }}"
           API_RESPONSE=$(curl -s -H "Authorization: Bearer $API_TOKEN" "$API_URL")
-          echo "$API_RESPONSE" > api_data.json
+          echo "$API_RESPONSE" > data_input.json
           
     # Setup Python to parse json data
     - name: Set up Python
@@ -25,10 +25,24 @@ jobs:
     # Install dependencies to run Python
     - name: Install dependencies
       run: pip install pandas
+
+    # Install jq to parse json
+    - name: Install jq
+      run: sudo apt-get install jq -y
+
+    # Parse json file to text file
+    - name: Parse JSON using jq and save to file
+      run: |
+        jq '.[] | .date' data_input.json > date.txt
+        jq '.[] | .sessions' data_input.json > sessions.txt
+        jq '.[] | .revenue' data_input.json > revenue.txt
+        jq '.[] | .orders' data_input.json > orders.txt
+        jq '.[] | .conversionrate' data_input.json > conv_rate.txt
+        jq '.[] | .aov' data_input.json > aov.txt
       
-    # Parsing the json file to Google sheet    
+    # Inject data to excel sheet    
     - name: Parse JSON data
-      run: python parse_json_to_excel.py
+      run: python parse_data_to_excel.py parsed_data.txt
 
     # Upload excel file to Google sheet  
     - name: Authenticate with Google Sheets API
