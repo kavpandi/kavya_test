@@ -4,7 +4,7 @@ on:
     branches: 
       - main
 jobs:
-  data-collect:
+  shopify_performance_data:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,8 +12,10 @@ jobs:
     - name: Fetch data from API
       run: |
           API_URL="https://api.example.com/data"
-          API_RESPONSE=$(curl -s "$API_URL")
+          API_TOKEN="${{ secrets.API_TOKEN }}"
+          API_RESPONSE=$(curl -s -H "Authorization: Bearer $API_TOKEN" "$API_URL")
           echo "$API_RESPONSE" > api_data.json
+          
     # Setup Python to parse json data
     - name: Set up Python
       uses: actions/setup-python@v2
