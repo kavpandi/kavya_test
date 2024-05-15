@@ -11,7 +11,7 @@ jobs:
     # To collect data from API
     - name: Fetch data from API
       run: |
-          API_URL="https://api.example.com/data"
+          API_URL="https://dummy.restapiexample.com/api/v1/employees"
           API_TOKEN="${{ secrets.API_TOKEN }}"
           API_RESPONSE=$(curl -s -H "Authorization: Bearer $API_TOKEN" "$API_URL")
           echo "$API_RESPONSE" > data_input.json
