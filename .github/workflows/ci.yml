@@ -53,8 +53,9 @@ jobs:
     # Install scrot for taking screenshots
     - name: Install dependencies to take screenshot
       run: |
-        pip install pyautogui
-        sudo apt-get install -y scrot
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser
+        pip install selenium
 
     # Script to take screenshot
     - name: Run Python script to capture screenshot
