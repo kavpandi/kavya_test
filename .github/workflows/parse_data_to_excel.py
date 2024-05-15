@@ -44,8 +44,8 @@ def inject_data_to_google_sheet(sheet_id, sheet_name, columns_data):
             print(f"Failed to update column {column}: {e}")
 
 if __name__ == "__main__":
-    sheet_id = 'your_sheet_id'  # Replace with the ID of your Google Sheets spreadsheet
-    sheet_name = 'Sheet1'  # Replace with the name of the worksheet in your spreadsheet
+    sheet_id = '1Z2mAgivd2qRQzkOBXS1dSveaazI_MgHlHbjOyTfpNww'  # Replace with the ID of your Google Sheets spreadsheet
+    sheet_name = 'shopify_data'  # Replace with the name of the worksheet in your spreadsheet
     columns_data = {
         1: 'date.txt',  # Column 1: Text file containing values
         2: 'sessions.txt',  # Column 2: Text file containing values
